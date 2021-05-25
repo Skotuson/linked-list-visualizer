@@ -18,7 +18,7 @@ function reloadLists() {
     input.value = "";
     listsDiv.innerHTML = "";
     for (let i = 0; i < lists.length; i++) {
-        listsDiv.innerHTML += lists[i].toString();
+        listsDiv.innerHTML += `<b>List ${i + 1}:</b> ` + lists[i].toString() + "<br>";
     }
 }
 
@@ -52,8 +52,18 @@ function reload() {
 
 function randomLinkedList() {
     let linkedList = new LinkedList(new Node(randomNumber(1, 69), null));
-    for (let i = 0; i < randomNumber(1, 9); i++) {
-        linkedList.addNode(randomNumber(1, 69));
+    for (let i = 0; i < randomNumber(5, 9); i++) {
+        linkedList.appendNode(new Node(randomNumber(1, 69), null));
+    }
+    return linkedList;
+}
+
+function fibbonaciLinkedList() {
+    let linkedList = new LinkedList(new Node(0, new Node(1, null)));
+    let node = linkedList.head;
+    for (let i = 0; i < randomNumber(10, 15); i++) {
+        node.next.next = new Node(node.value + node.next.value, null);
+        node = node.next;
     }
     return linkedList;
 }

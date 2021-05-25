@@ -10,6 +10,7 @@ let sortBttn = document.getElementById('sortBttn');
 let removeBttn = document.getElementById('removeBttn');
 let mergeBttn = document.getElementById('mergeBttn');
 let clearBttn = document.getElementById('clearBttn');
+let fibbonaciBttn = document.getElementById('fibbonaciBttn');
 let listNumber = document.getElementById('listNumber');
 let nodeCount = document.getElementById('nodeCount');
 let listASelection = document.getElementById('listA');
@@ -23,6 +24,14 @@ addListBttn.addEventListener('click', e => {
         lists.push(new LinkedList(new Node(input.value, null)));
         reload();
     }
+})
+
+removeListBttn.addEventListener('click', e => {
+    if (lists.length > 0) {
+        lists.splice(listNumber.value - 1, 1);
+    }
+    reloadLists();
+    reloadListSelection();
 })
 
 addNodeBttn.addEventListener('click', e => {
@@ -70,7 +79,10 @@ removeNodeBttn.addEventListener('click', e => {
 
 splitBttn.addEventListener('click', e => {
     if (lists.length > 1) {
-        lists.splice(listNumber.value, 0, new LinkedList(lists[listNumber.value - 1].get(nodeCount.value).next));
+        let node = lists[listNumber.value - 1].get(nodeCount.value).next;
+        if (node != null) {
+            lists.splice(listNumber.value, 0, new LinkedList(node));
+        }
         lists[listNumber.value - 1].get(nodeCount.value).next = null;
     }
     reload();
@@ -84,6 +96,18 @@ mergeBttn.addEventListener('click', e => {
         listA.appendNode(listB.head);
         lists.splice(listBSelection.value - 1, 1);
     }
+    reload();
+})
+
+sortBttn.addEventListener('click', e => {
+    if (lists.length > 1) {
+        lists[listNumber.value - 1].bubbleSort();
+    }
+    reload();
+})
+
+fibbonaciBttn.addEventListener('click', e => {
+    lists.push(fibbonaciLinkedList());
     reload();
 })
 

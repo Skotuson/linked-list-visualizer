@@ -91,9 +91,15 @@ class LinkedList {
 
     bubbleSort() {
         let node = this.head;
-        for (let i = 0; i < this.size() - i; i++) {
-            for (let i = 0; i < this.size(); i++) {
-
+        for (let i = 0; i < this.size(); i++) {
+            node = this.head;
+            for (let j = 0; j < this.size() - i - 1; j++) {
+                if (node.value > node.next.value) {
+                    let temp = node.value;
+                    node.value = node.next.value;
+                    node.next.value = temp;
+                }
+                node = node.next;
             }
         }
     }
