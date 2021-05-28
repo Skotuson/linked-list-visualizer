@@ -24,6 +24,7 @@ addListBttn.addEventListener('click', e => {
     if (input.value.match(/[0-9]/)) {
         lists.push(new LinkedList(new Node(input.value, null)));
         reload();
+        nodeCount.innerHTML += `<option value="1">1</option >`;
     }
 })
 
