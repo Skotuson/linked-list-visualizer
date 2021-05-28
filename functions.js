@@ -35,7 +35,7 @@ function reloadListSelection() {
 
 function reloadNodeSelection() {
     nodeCount.innerHTML = "";
-    for (let i = 0; i < lists[listNumber.value - 1].size(); i++) {
+    for (let i = 0; i <= lists[listNumber.value - 1].size(); i++) {
         nodeCount.innerHTML += `<option value="${i}">${i}</option>`;
     }
 }
@@ -53,7 +53,7 @@ function reload() {
 function randomLinkedList() {
     let linkedList = new LinkedList(new Node(randomNumber(1, 69), null));
     for (let i = 0; i < randomNumber(5, 9); i++) {
-        linkedList.appendNode(new Node(randomNumber(1, 69), null));
+        linkedList.appendNode(new Node(randomNumber(-10, 69), null));
     }
     return linkedList;
 }
@@ -76,5 +76,9 @@ function reverseHeader() {
     else {
         header.innerHTML = "Linked => List => Visualizer";
     }
+}
+
+function getSelectedList() {
+    return lists[listNumber.value - 1];
 }
 

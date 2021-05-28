@@ -7,7 +7,8 @@ let reverseBttn = document.getElementById('reverseBttn');
 let generateBttn = document.getElementById('generateBttn');
 let splitBttn = document.getElementById('splitBttn');
 let sortBttn = document.getElementById('sortBttn');
-let removeBttn = document.getElementById('removeBttn');
+let removeNodeBttn = document.getElementById('removeNodeBttn');
+let changeNodeBttn = document.getElementById('changeNodeBttn');
 let mergeBttn = document.getElementById('mergeBttn');
 let clearBttn = document.getElementById('clearBttn');
 let fibbonaciBttn = document.getElementById('fibbonaciBttn');
@@ -36,7 +37,7 @@ removeListBttn.addEventListener('click', e => {
 
 addNodeBttn.addEventListener('click', e => {
     if (lists.length > 0 && input.value.match(/[a-zA-Z0-9]/)) {
-        lists[listNumber.value - 1].addNode(input.value, nodeCount.value);
+        getSelectedList().addNode(input.value, nodeCount.value);
         reloadLists();
         reloadNodeSelection();
     }
@@ -44,7 +45,7 @@ addNodeBttn.addEventListener('click', e => {
 
 reverseBttn.addEventListener('click', e => {
     if (lists.length > 0) {
-        lists[listNumber.value - 1].reverse();
+        getSelectedList().reverse();
         reverseHeader();
         reloadLists();
     }
@@ -67,8 +68,8 @@ clearBttn.addEventListener('click', e => {
 })
 
 removeNodeBttn.addEventListener('click', e => {
-    if (lists[listNumber.value - 1].size() > 1) {
-        lists[listNumber.value - 1].removeNode(nodeCount.value);
+    if (getSelectedList().size() > 1) {
+        getSelectedList().removeNode(nodeCount.value);
     }
     else {
         lists.splice(listNumber.value - 1, 1);
@@ -78,12 +79,12 @@ removeNodeBttn.addEventListener('click', e => {
 })
 
 splitBttn.addEventListener('click', e => {
-    if (lists.length > 1) {
-        let node = lists[listNumber.value - 1].get(nodeCount.value).next;
+    if (lists.length > 0) {
+        let node = getSelectedList().get(nodeCount.value).next;
         if (node != null) {
             lists.splice(listNumber.value, 0, new LinkedList(node));
         }
-        lists[listNumber.value - 1].get(nodeCount.value).next = null;
+        getSelectedList().get(nodeCount.value).next = null;
     }
     reload();
 })
@@ -100,8 +101,8 @@ mergeBttn.addEventListener('click', e => {
 })
 
 sortBttn.addEventListener('click', e => {
-    if (lists.length > 1) {
-        lists[listNumber.value - 1].bubbleSort();
+    if (lists.length > 0) {
+        getSelectedList().bubbleSort();
     }
     reload();
 })
@@ -110,6 +111,13 @@ fibbonaciBttn.addEventListener('click', e => {
     lists.push(fibbonaciLinkedList());
     reload();
 })
+
+changeNodeBttn.addEventListener('click', e => {
+    getSelectedList().get(nodeCount.value).value = input.value;
+    reload();
+})
+
+
 
 
 
