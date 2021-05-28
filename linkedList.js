@@ -9,11 +9,7 @@ class LinkedList {
             this.head = new Node(value, this.head);
             return;
         }
-        let node = this.head;
-        for (let i = 0; i < position; i++) {
-            if (node.next != null)
-                node = node.next;
-        }
+        let node = this.get(position)
         node.next = new Node(value, node.next);
     }
 
@@ -33,11 +29,7 @@ class LinkedList {
             this.head = this.head.next;
             return;
         }
-        let node = this.head;
-        for (let i = 0; i < position - 1; i++) {
-            if (node.next != null)
-                node = node.next;
-        }
+        let node = this.get(position - 1);
         node.next = node.next.next;
     }
 

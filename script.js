@@ -21,7 +21,7 @@ let lists = [];
 
 
 addListBttn.addEventListener('click', e => {
-    if (input.value.match(/[a-zA-Z0-9]/)) {
+    if (input.value.match(/[0-9]/)) {
         lists.push(new LinkedList(new Node(input.value, null)));
         reload();
     }
@@ -36,7 +36,7 @@ removeListBttn.addEventListener('click', e => {
 })
 
 addNodeBttn.addEventListener('click', e => {
-    if (lists.length > 0 && input.value.match(/[a-zA-Z0-9]/)) {
+    if (lists.length > 0 && input.value.match(/[0-9]/)) {
         getSelectedList().addNode(input.value, nodeCount.value);
         reloadLists();
         reloadNodeSelection();
@@ -113,8 +113,10 @@ fibbonaciBttn.addEventListener('click', e => {
 })
 
 changeNodeBttn.addEventListener('click', e => {
-    getSelectedList().get(nodeCount.value).value = input.value;
-    reload();
+    if (lists.length > 0 && input.value.match(/[0-9]/)) {
+        getSelectedList().get(nodeCount.value).value = input.value;
+        reload();
+    }
 })
 
 

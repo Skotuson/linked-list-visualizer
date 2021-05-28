@@ -35,7 +35,7 @@ function reloadListSelection() {
 
 function reloadNodeSelection() {
     nodeCount.innerHTML = "";
-    for (let i = 0; i <= lists[listNumber.value - 1].size(); i++) {
+    for (let i = 0; i < lists[listNumber.value - 1].size(); i++) {
         nodeCount.innerHTML += `<option value="${i}">${i}</option>`;
     }
 }
