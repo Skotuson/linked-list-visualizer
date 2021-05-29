@@ -4,11 +4,11 @@ class LinkedList {
         this.head = head;
     }
 
+    addFirst(value) {
+        this.head = new Node(value, this.head);
+    }
+
     addNode(value, position) {
-        if (position == 0) {
-            this.head = new Node(value, this.head);
-            return;
-        }
         let node = this.get(position)
         node.next = new Node(value, node.next);
     }

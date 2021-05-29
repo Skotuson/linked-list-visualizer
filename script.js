@@ -7,6 +7,7 @@ let reverseBttn = document.getElementById('reverseBttn');
 let generateBttn = document.getElementById('generateBttn');
 let splitBttn = document.getElementById('splitBttn');
 let sortBttn = document.getElementById('sortBttn');
+let addFirstNodeBttn = document.getElementById('addFirstNodeBttn');
 let removeNodeBttn = document.getElementById('removeNodeBttn');
 let changeNodeBttn = document.getElementById('changeNodeBttn');
 let mergeBttn = document.getElementById('mergeBttn');
@@ -24,7 +25,6 @@ addListBttn.addEventListener('click', e => {
     if (input.value.match(/[0-9]/)) {
         lists.push(new LinkedList(new Node(input.value, null)));
         reload();
-        nodeCount.innerHTML += `<option value="1">1</option >`;
     }
 })
 
@@ -34,6 +34,14 @@ removeListBttn.addEventListener('click', e => {
     }
     reloadLists();
     reloadListSelection();
+})
+
+addFirstNodeBttn.addEventListener('click', e => {
+    if (lists.length > 0 && input.value.match(/[0-9]/)) {
+        getSelectedList().addFirst(input.value);
+        reloadLists();
+        reloadNodeSelection();
+    }
 })
 
 addNodeBttn.addEventListener('click', e => {
